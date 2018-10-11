@@ -102,7 +102,58 @@ public class Colosseum {
      * (Look, we can return objects too!)
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
+        Pokemon returnPokemon;
+
+        System.out.println("Select from the following Pokemon types: ");
+        System.out.println("1 - Electric Pokemon");
+        System.out.println("2 - Fire Pokemon");
+        System.out.println("3 - Water Pokemon");
+        int type = Integer.parseInt(myScan.nextLine());
+        while (type < 1 || type > 1 + 1 + 1) {
+            System.out.println("Sorry. number must be between 1 and 3: ");
+            type = Integer.parseInt(myScan.nextLine());
+        }
+
+        if (type == 1) {
+            returnPokemon = new ElectricPokemon();
+        } else if (type == 2) {
+            returnPokemon = new FirePokemon();
+        } else {
+            returnPokemon = new WaterPokemon();
+        }
+
+        /*switch (type) {
+            case 1: returnPokemon = new ElectricPokemon();
+            break;
+            case 2: returnPokemon = new FirePokemon();
+            break;
+            case 3: returnPokemon = new WaterPokemon();
+        }*/
+        System.out.println("Please name your Pokemon: ");
+        String name = myScan.nextLine();
+        int tots = MAX_HIT_POINTS;
+
+        System.out.println("How many hit points will it have? (1-50): ");
+        int hp = Integer.parseInt(myScan.nextLine());
+        while (hp <= 0 || hp > MAX_HIT_POINTS) {
+            System.out.println("Sorry. Hit points must be between 1 and 50: ");
+            hp = Integer.parseInt(myScan.nextLine());
+        }
+
+        System.out.println("Split fifty points between attack level and defense level");
+        System.out.println("Enter your attack level (1-" + (tots - 1) + "): ");
+        int atk = Integer.parseInt(myScan.nextLine());
+        while (atk < 1 || atk > tots - 1) {
+            System.out.println("Sorry. The attack level must be between 1 and " + (tots - 1) + ": ");
+            atk = Integer.parseInt(myScan.nextLine());
+        }
+
+        System.out.println("Enter your defense level (1-" + (tots - atk) + "): ");
+        int def = Integer.parseInt(myScan.nextLine());
+        while (def < 1 || def > tots - atk) {
+            System.out.println("Sorry. The defense level must be between 1 and " + (tots - atk) + ": ");
+            def = Integer.parseInt(myScan.nextLine());
+        }
         return returnPokemon;
     }
 
